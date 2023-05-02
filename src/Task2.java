@@ -15,7 +15,6 @@ public class Task2 {
     public Task2() {
         frame = new JFrame();
         frame.setTitle("Matrix Reader");
-        frame.setSize(800, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -78,7 +77,7 @@ public class Task2 {
             while ((line = reader.readLine()) != null) {
                 String[] numbers = line.split("\\s+");
 
-                if (numbers.length > 20) {
+                if (numbers.length > 10) {
                     throw new CustomException("Invalid matrix size!");
                 }
 
@@ -94,7 +93,7 @@ public class Task2 {
         } catch (IOException e) {
             throw new FileNotFoundException();
         }
-        if (row > 20) {
+        if (row > 10) {
             throw new CustomException("Invalid matrix size!");
         }
         return matrix;
@@ -106,7 +105,7 @@ public class Task2 {
             model.addColumn(col);
         }
         for (int row = 0; row < 10; row++) {
-            Object[] rowData = new Object[10];
+            Integer[] rowData = new Integer[10];
             for (int col = 0; col < 10; col++) {
                 rowData[col] = matrix[row][col];
             }
@@ -140,7 +139,7 @@ public class Task2 {
         resMinField.setText(Integer.toString(min));
     }
 
-    private static class CustomException extends Exception {
+    private static class CustomException extends ArithmeticException {
         public CustomException(String message) {
             super(message);
         }
